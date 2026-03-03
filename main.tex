@@ -232,5 +232,45 @@ Code for Figures \ref{fig:Hyperbola} and \ref{fig:Function} can be found at:
 Codes/solution.py
 \end{lstlisting}
 \fi
+\section{Derivation of Truncation Points}
+To plot the function $f(t)$ effectively, we define truncation points $t_1$ and $t_2$ such that a fraction $p$ (e.g., $0.99$) of the total area is retained. Given $f(t)$ from \eqref{q1} and \eqref{q2}:
+\begin{align}
+    f(t) = \begin{cases} 
+        e^{bt}, & t < 0 \\
+        e^{-at}, & t > 0 
+    \end{cases}
+\end{align}
+The total area is $A = \int_{-\infty}^{\infty} f(t)dt = \frac{1}{a} + \frac{1}{b} = 1$. To retain $p$ area, we seek $t_1$ and $t_2$ such that the area in each excluded tail is $\frac{1-p}{2}$.
 
+\subsection{Lower Bound}
+Setting the area of the left tail to the excluded portion:
+\begin{align}
+    \int_{-\infty}^{t_1} e^{bt} \, dt &= \frac{1-p}{2} \\
+    \left[ \frac{e^{bt}}{b} \right]_{-\infty}^{t_1} &= \frac{1-p}{2} \\
+    \frac{e^{bt_1}}{b} &= \frac{1-p}{2} \\
+    t_1 &= \frac{1}{b} \ln\brak{\frac{b(1-p)}{2}}
+\end{align}
+
+\subsection{Upper Bound}
+Setting the area of the right tail to the excluded portion:
+\begin{align}
+    \int_{t_2}^{\infty} e^{-at} \, dt &= \frac{1-p}{2} \\
+    \left[ -\frac{e^{-at}}{a} \right]_{t_2}^{\infty} &= \frac{1-p}{2} \\
+    \frac{e^{-at_2}}{a} &= \frac{1-p}{2} \\
+    t_2 &= -\frac{1}{a} \ln\brak{\frac{a(1-p)}{2}}
+\end{align}
+
+As an illustrative example, for the specific case of $p=0.975$ and the validated coordinates $\vec{\hat{x}}_1$, these bounds ensure the truncated graph retains most of the area of the original function while still being easily plottable and presentable.
+
+\begin{align}
+	t_1 &= \frac{1}{b} \ln\brak{\frac{b(1-p)}{2}}= \frac{1}{\sqrt{2}} \ln\brak{\frac{\sqrt{2}(1-0.975)}{2}} &\approx -2.8535 \\
+	t_2 &= -\frac{1}{a} \ln\brak{\frac{a(1-p)}{2}}= -\frac{1}{2+\sqrt{2}} \ln\brak{\frac{(2+\sqrt{2})(1-0.975)}{2}} &\approx 0.9238
+\end{align}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{figs/trunc.png}
+	\caption{}
+	\label{fig:Truncation}
+\end{figure}
 \end{document}

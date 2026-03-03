@@ -116,13 +116,18 @@ plt.close()
 
 plt.figure(figsize = (8,8))
 
+p = 0.975
+
 # Filtering out invalid (a,b) pairs
 for i in range(ActualEndpoints.shape[1]):
+    if i == 0: continue
     if ((ActualEndpoints[:,i] < 0).any()): continue
-    
+    a, b= ActualEndpoints[:, i]
+    t1 = (1/b) * np.log((b* (1 - p)) / 2)
+    t2 = -(1/a) * np.log((a* (1 - p)) / 2)
     f = func_param(*ActualEndpoints[:,i])
-    xf = func_gen(f, -5, 5)
-    plt.plot(xf[:,0], xf[:,1], label=f"g(x) for x{i+1}")
+    xf = func_gen(f, t1, t2)
+    plt.plot(xf[:,0], xf[:,1], label=f"g(x) for x1")
 
 # Configuring Plot
 ax = plt.gca()
@@ -130,15 +135,15 @@ ax.spines['top'].set_color('none')
 ax.spines['left'].set_position('zero')
 ax.spines['right'].set_color('none')
 ax.spines['bottom'].set_position('zero')
-ax.set_xlim([-5, 5])
-ax.set_ylim([-0.5, 1.5])
+ax.set_xlim([-3, 3])
+ax.set_ylim([-3, 3])
 plt.xlabel('$x$')
 plt.ylabel('$y$')
 plt.legend(loc='best')
 plt.grid()
-plt.xticks(np.arange(-5, 6, 1.0))
-plt.yticks(np.arange(-5, 6, 1.0))
-# plt.savefig("../Figures/function.png", transparent=True, bbox_inches='tight', pad_inches=0)
+plt.xticks(np.arange(-3, 4, 1.0))
+plt.yticks(np.arange(-3, 4, 1.0))
+plt.savefig("../figs/trunc.png", transparent=True, bbox_inches='tight', pad_inches=0)
 
 plt.show()  
 
