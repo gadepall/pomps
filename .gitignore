@@ -17,6 +17,7 @@ build/
 # Core auxiliary files
 *.aux
 *.log
+*.out
 *.toc
 *.synctex.gz
 *.fls
