@@ -116,7 +116,7 @@ plt.close()
 
 plt.figure(figsize = (8,8))
 
-p = 0.975
+p = 0.96838
 
 # Filtering out invalid (a,b) pairs
 for i in range(ActualEndpoints.shape[1]):

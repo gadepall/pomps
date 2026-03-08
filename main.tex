@@ -96,7 +96,7 @@ Find the possible values of $(a,b)$ if these are the end points of the latus rec
 Subsituting \eqref{q3} in \eqref{integral_result}
 
 \begin{align}
-	\frac{1}{a} + \frac{1}{b} &= 1\\
+	\frac{1}{a} + \frac{1}{b} &= 1 \label{eq:cond_ab}\\
 	ab - a - b &= 0 \label{conic_ab}
 \end{align}
 
@@ -233,7 +233,7 @@ Codes/solution.py
 \end{lstlisting}
 \fi
 \section{Derivation of Truncation Points}
-To plot the function $f(t)$ effectively, we define truncation points $t_1$ and $t_2$ such that a fraction $p$ (e.g., $0.99$) of the total area is retained. Given $f(t)$ from \eqref{q1} and \eqref{q2}:
+To plot the function $f(t)$ effectively, we define truncation points $t_1$ and $t_2$ such that a fraction $p$ of the total area is retained. Given $f(t)$ from \eqref{q1} and \eqref{q2}:
 \begin{align}
     f(t) = \begin{cases} 
         e^{bt}, & t < 0 \\
@@ -260,16 +260,46 @@ Setting the area of the right tail to the excluded portion:
     t_2 &= -\frac{1}{a} \ln\brak{\frac{a(1-p)}{2}}
 \end{align}
 
-As an illustrative example, for the specific case of $p=0.975$ and the validated coordinates $\vec{\hat{x}}_1$, these bounds ensure the truncated graph retains most of the area of the original function while still being easily plottable and presentable.
+%As an illustrative example, for the specific case of $p=0.975$ and the validated coordinates $\vec{\hat{x}}_1$, these bounds ensure the truncated graph retains most of the area of the original function while still being easily plottable and presentable.
 
+\subsection{Truncation Percentage}
+A standard way to calculate the appropriate value of $p$ is to express it in terms of the amplitude threshold $\epsilon$. This means that the graph is truncated when the signal's amplitude drops to a small fraction, $\epsilon$, of its peak value.
+
+Let the truncation points $t_1$ and $t_2$ be defined as the exact points where the function decays to $\epsilon$:
+	$$f(t_1) = \epsilon \quad \text{and} \quad f(t_2) = \epsilon$$
+
+
+\noindent For the left side ($t < 0$):$$e^{bt_1} = \epsilon \implies t_1 = \frac{\ln(\epsilon)}{b}$$For the right side ($t > 0$):$$e^{-at_2} = \epsilon \implies -at_2 = \ln(\epsilon) \implies t_2 = -\frac{\ln(\epsilon)}{a}$$
+%$$A_{\text{left\_excluded}} = \int_{-\infty}^{t_1} e^{bt} \, dt = \left[ \frac{e^{bt}}{b} \right]_{-\infty}^{t_1} = \frac{e^{bt_1}}{b} = \frac{\epsilon}{b}$$$$A_{\text{right\_excluded}} = \int_{t_2}^{\infty} e^{-at} \, dt = \left[ -\frac{e^{-at}}{a} \right]_{t_2}^{\infty} = \frac{e^{-at_2}}{a} = \frac{\epsilon}{a}$$
+
+Thus we have:
+$$A_{\text{excluded}} = \int_{-\infty}^{t_1} e^{bt} \, dt + \int_{t_2}^{\infty} e^{-at} \, dt = \frac{\epsilon}{b} + \frac{\epsilon}{a} = \epsilon \left( \frac{1}{a} + \frac{1}{b} \right)$$
+From \eqref{eq:cond_ab}:
+$$A_{\text{excluded}} = \epsilon$$
+Since the retained area $p$ is $1 - A_{\text{excluded}}$:
 \begin{align}
-	t_1 &= \frac{1}{b} \ln\brak{\frac{b(1-p)}{2}}= \frac{1}{\sqrt{2}} \ln\brak{\frac{\sqrt{2}(1-0.975)}{2}} &\approx -2.8535 \\
-	t_2 &= -\frac{1}{a} \ln\brak{\frac{a(1-p)}{2}}= -\frac{1}{2+\sqrt{2}} \ln\brak{\frac{(2+\sqrt{2})(1-0.975)}{2}} &\approx 0.9238
+	p = 1 - \epsilon \label{eq:p_ep}
 \end{align}
 
+\subsection{Choice of Threshold}
+A reasonable choice for the threshold condition for the bounds $t_1$ and $t_2$ is the point where the signal undergoes a $-30$dB amplitude attenuation
+
+Amplitude in decibels is calculated as $20 \log_{10}(\epsilon)$
+\begin{align}
+	20 \log_{10}(\epsilon) &= -30 \\
+	\epsilon &= 10^{-1.5} \approx 0.03162
+\end{align}
+From \eqref{eq:p_ep}
+$$p = 1 - 0.03162 = \mathbf{0.96838}$$
+Thus we have
+\begin{align}
+	t_1 &= \frac{1}{b} \ln\brak{\frac{b(1-p)}{2}}= \frac{1}{\sqrt{2}} \ln\brak{\frac{\sqrt{2}(1-0.96838)}{2}} &\approx -2.6874 \\
+	t_2 &= -\frac{1}{a} \ln\brak{\frac{a(1-p)}{2}}= -\frac{1}{2+\sqrt{2}} \ln\brak{\frac{(2+\sqrt{2})(1-0.96838)}{2}} &\approx 0.8550
+\end{align}
+%\newpage
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\columnwidth]{figs/trunc.png}
+	\includegraphics[width=0.7\columnwidth]{figs/trunc.png}
 	\caption{}
 	\label{fig:Truncation}
 \end{figure}
