@@ -57,13 +57,13 @@
 %\vspace{-0.7cm}
 
 \begin{abstract}
-This paper outlines a rigorous mathematical framework for generating a unique visual logo. Unlike conventional graphic design techniques that rely on free-form vector drawing, this approach derives a foundational geometric structure by linking a continuous-time signal's integral constraints to the analytic geometry of conic sections using matrix equations and decompositions. Specifically, we extract the decay parameters of an exponential signal by mapping them to the latus recta endpoints of a derived hyperbola. A precise truncation method based on decibel attenuation is then applied to the resulting infinite waveform to yield a bounded, aesthetically pleasing visual asset usable as a logo.
+This paper outlines a rigorous mathematical framework for generating a unique visual logo. Unlike conventional graphic design techniques that rely on free-form vector drawing, this approach derives a foundational geometric structure by linking a continuous-time signal's integral constraints to the analytic geometry of conic sections using matrix equations and decompositions. Specifically, we extract the decay parameters of an exponential signal by mapping them to the latus recta endpoints of a derived hyperbola. A precise truncation method based on decibel attenuation is then applied to the resulting infinite waveform to yield a bounded, aesthetic visual asset usable as a logo.
 \end{abstract}
 
 %\vspace{0.1cm}
 \section*{1. Introduction and Related Work}
 Many companies map explicit equations to their brand, such as Broadcom's stylized sinc function ($\operatorname{sinc}(x)$) and Cisco's discrete digital waveforms.%\footnote{A. Smith and J. Doe, \emph{J. of Visual Branding} \textbf{45}, 112 (2018).} 
-In algorithmic graphics, mathematical frameworks generally take two forms. The first is generative: utilizing parametric primitives, double pendulum kinematics, or trigonometry to script interactive patterns for textiles and digital art.\footnote{P. Jha and B. B. Biswal, \emph{J. of Graphic Eng. and Design} \textbf{11}, 37 (2020).}\footnote{I. Staribratov and N. Manolova, \emph{Math. and Informatics} \textbf{65}, 72 (2022).} The second is proportional: applying recursive sequences like the Golden Ratio, or simplified 2:3:5 geometric ratios, as post-hoc structural grids to refine manually drawn Bézier curves.\footnote{M. Rizaldi and R. Anthonius, \emph{Adv. in Soc. Sci., Edu. and Hum. Res.} \textbf{502}, 21 (2020).} 
+In algorithmic graphics, mathematical frameworks generally take two forms. The first is generative: utilizing parametric primitives, double pendulum kinematics, or trigonometry to script interactive patterns for textiles and digital art.\footnote{P. Jha and B. B. Biswal, \emph{J. of Graphic Eng. and Design} \textbf{11}, 37 (2020).}\footnote{I. Staribratov and N. Manolova, \emph{Math. and Informatics} \textbf{65}, 72 (2022).} The second is proportional: applying recursive sequences like the Golden Ratio, or simplified 2:3:5 geometric ratios, to refine manually drawn Bézier curves.\footnote{M. Rizaldi and R. Anthonius, \emph{Adv. in Soc. Sci., Edu. and Hum. Res.} \textbf{502}, 21 (2020).} 
 
 Despite these methodologies, a significant gap persists: existing mathematical logo designs either serve as proportional overlays to hand-drawn vector art or employ generative scripts that ultimately require arbitrary aesthetic cropping within design software. This project overcomes this by introducing a purely mathematical approach from start to finish. Rather than relying on drawing tools or visual grids, the logo's exact structural coordinates were analytically derived directly from signal processing constraints and eigenvalue decomposition. Furthermore, arbitrary software masking was replaced with precise signal truncation derived from  attenuation limits. This ensures the final visual asset is not merely mathematically assisted, but strictly mathematically generated.
 
@@ -77,7 +77,7 @@ The logo's underlying structure is defined by the continuous-time function $f(t)
 
 %\vspace{0.1cm}
 \section*{3. Logo Realization and Truncation}
-Because the derived function $f(t)$ extends to infinity, it must be strategically truncated to serve as a practical logo. Rather than arbitrary cropping, we enforce a $-30$dB amplitude attenuation threshold ($\epsilon \approx 0.03162$). The theoretical truncation bounds $t_1$ and $t_2$ were derived precisely. The resulting bounded graph, serves as the final mathematically synthesized logo.
+Because the derived function $f(t)$ extends to infinity, it must be strategically truncated to serve as a practical logo. Rather than arbitrary cropping, a $-30$dB amplitude attenuation threshold was enforced to derive theoretical truncation bounds $t_1$ and $t_2$ precisely. The resulting bounded graph was taken as the final mathematically synthesised logo.
 
 \iffalse
 \vfill
