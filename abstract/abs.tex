@@ -32,6 +32,9 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{multicol}
+
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage[T1]{fontenc}
 \pagestyle{fancy}
 \fancyhf{}
@@ -50,7 +53,7 @@
 
 \title{\bfseries\large{A Logo for Narayanpal}}
 
-\author{\underline{Subhodeep Chakraborty}\footnote{Department of Electrical Engineering, Indian Institute of Technology, Hyderabad}, Shiven Bajpai\footnote{Department of Artifical Intelligence, Indian Institute of Technology, Hyderabad} and G.V.V. Sharma\footnote{Department of Electrical Engineering, Indian Institute of Technology, Hyderabad}}
+\author{\underline{Subhodeep Chakraborty}\footnote{Department of Electrical Engineering, Indian Institute of Technology, Hyderabad}, Shiven Bajpai\footnote{Department of Artifical Intelligence, Indian Institute of Technology, Hyderabad} and G.V.V. Sharma\footnotemark[1]}
 
 \begin{document}
 \maketitle
@@ -72,16 +75,47 @@ Despite these methodologies, a significant gap persists: existing mathematical f
 %Building upon this legacy of using proportional overlays or explicit functional graphs, our paper proposes a novel synthesis. Instead of relying on parametric primitives or isolated formulas, we derive a logo's exact structural coordinates by leveraging continuous-time signal processing constraints alongside eigenvalue decomposition. Our method mandates that the visual shape is the strict analytical outcome of a converging area integral.
 
 %\vspace{0.1cm}
-The logo's underlying structure is defined by the continuous-time function $f(t) = e^{-at}u(t) + e^{bt}u(-t)$. The parameters $(a,b)$ are derived by enforcing a constraint for unit area, yielding the conic section $ab - a - b = 0$. By expressing this conic in the standard quadratic form $\text{g}(\vec{x}) = \vec{x}^\text{T}\vec{Vx} + 2\vec{u}^\text{T}\vec{x} + f$ and performing eigendecomposition, we apply affine transformations to map the hyperbola into a standard coordinate system. The parameters $(a,b)$ are then explicitly chosen as the valid endpoints of the latus recta of this conic, yielding a precise solution.% $\vec{\hat{x}}_1 = \myvec{2+\sqrt{2} \\ \sqrt{2}}$. 
+The logo's underlying structure is defined by the function $f(t) = e^{-at}u(t) + e^{bt}u(-t)$. The parameters $(a,b)$ are derived by enforcing a constraint for unit area, yielding the conic section $ab - a - b = 0$. By expressing this conic in the standard quadratic form $\text{g}(\vec{x}) = \vec{x}^\text{T}\vec{Vx} + 2\vec{u}^\text{T}\vec{x} + f$ and performing eigendecomposition, we apply affine transformations to map the hyperbola into a standard coordinate system. The parameters $(a,b)$ are then explicitly chosen as the valid endpoints of the latus recta of this conic, yielding a precise solution.% $\vec{\hat{x}}_1 = \myvec{2+\sqrt{2} \\ \sqrt{2}}$. 
 %\vspace{0.1cm}
 To serve as a practical logo, the graph was truncated. Rather than arbitrary cropping, a $-30$dB amplitude attenuation threshold was enforced to derive theoretical truncation bounds $t_1$ and $t_2$ precisely. The resulting bounded graph was taken as the final mathematically synthesised logo.
 
 \vfill
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.45\columnwidth]{../figs/trunc1.png}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+	\includegraphics[width=0.65\columnwidth]{../figs/Hyperbola.png}
 	\caption*{}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+	\includegraphics[width=\columnwidth]{../figs/trunc1.png}
+	\caption*{}
+    \end{subfigure}
 	%\caption{The final truncated logo generated from the derived parameters $(a,b)$.}
 	\label{fig:Truncation}
 \end{figure}
+
+\iffalse
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        %\rule{\linewidth}{4cm}
+        \includegraphics[width=0.8\textwidth]{topview.jpg}
+        \caption{Top view}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        %\rule{\linewidth}{4cm}
+        \includegraphics[width=0.8\textwidth]{side view.jpg}
+        \caption{Side view}
+    \end{subfigure}
+    \caption{Circuit}
+    \label{fig:circuit}
+\end{figure}
+\fi
 \end{document}
